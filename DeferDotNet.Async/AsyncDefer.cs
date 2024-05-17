@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace DeferDotNet;
+namespace DeferDotNet.Async;
 
 public interface IAsyncDefer : IAsyncDisposable
 {
@@ -29,13 +29,20 @@ public interface IAsyncDefer<out T> : IAsyncDefer
 /// <param name="forceThread">Whether to force the deferral to run on a separate thread using Task.Run().</param>
 public sealed class Defer(Func<Task> func, bool forceThread = false) : IAsyncDefer
 {
-    ~Defer() => this.DisposeAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+    ~Defer() => this.DisposeAsync(false).ConfigureAwait(false).GetAwaiter().GetResult();
 
     public bool IsDisposed { get; private set; }
     public Exception Error { get; private set; }
 
-    public async ValueTask DisposeAsync()
+    public ValueTask DisposeAsync() => this.DisposeAsync(true);
+
+    private async ValueTask DisposeAsync(bool disposing)
     {
+        if (!disposing)
+        {
+            return;
+        }
+
         if (this.Error is not null)
         {
             throw this.Error;
@@ -86,14 +93,21 @@ public sealed class Defer(Func<Task> func, bool forceThread = false) : IAsyncDef
 /// <param name="forceThread">Whether to force the deferral to run on a separate thread using Task.Run().</param>
 public sealed class Defer<T>(Func<Task<T>> func, bool forceThread = false) : IAsyncDefer<T>
 {
-    ~Defer() => this.DisposeAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+    ~Defer() => this.DisposeAsync(false).ConfigureAwait(false).GetAwaiter().GetResult();
 
     public T Result { get; private set; }
     public bool IsDisposed { get; private set; }
     public Exception Error { get; private set; }
 
-    public async ValueTask DisposeAsync()
+    public ValueTask DisposeAsync() => this.DisposeAsync(true);
+
+    private async ValueTask DisposeAsync(bool disposing)
     {
+        if (!disposing)
+        {
+            return;
+        }
+
         if (this.Error is not null)
         {
             throw this.Error;

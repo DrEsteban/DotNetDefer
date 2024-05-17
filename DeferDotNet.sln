@@ -8,6 +8,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BBE2DF9E-F6F5-4254-B5DE-FA20C12E1633}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeferDotNet.Async", "DeferDotNet.Async\DeferDotNet.Async.csproj", "{E56D0AE8-8F43-4B01-BBD9-82F1D7357B11}"

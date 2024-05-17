@@ -26,13 +26,20 @@ public interface IDefer<out T> : IDefer
 /// <param name="action">The action to defer.</param>
 public sealed class Defer(Action action) : IDefer
 {
-    ~Defer() => this.Dispose();
+    ~Defer() => this.Dispose(false);
 
     public bool IsDisposed { get; private set; }
     public Exception Error { get; private set; }
 
-    public void Dispose()
+    public void Dispose() => this.Dispose(true);
+
+    private void Dispose(bool disposing)
     {
+        if (!disposing)
+        {
+            return;
+        }
+
         if (this.Error is not null)
         {
             throw this.Error;
@@ -82,14 +89,21 @@ public sealed class Defer(Action action) : IDefer
 /// <param name="func">The function to defer.</param>
 public sealed class Defer<T>(Func<T> func) : IDefer<T>
 {
-    ~Defer() => this.Dispose();
+    ~Defer() => this.Dispose(false);
 
     public T Result { get; private set; }
     public bool IsDisposed { get; private set; }
     public Exception Error { get; private set; }
 
-    public void Dispose()
+    public void Dispose() => this.Dispose(true);
+
+    private void Dispose(bool disposing)
     {
+        if (!disposing)
+        {
+            return;
+        }
+
         if (this.Error is not null)
         {
             throw this.Error;

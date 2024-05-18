@@ -18,5 +18,9 @@ jobs:
       run: dotnet test --verbosity normal
     - name: Build release
       run: dotnet build -c Release
-    - name: Publish
+    - name: Publish GitHub
+      run: |
+        dotnet nuget add source --username USERNAME --password ${{ secrets.GITHUBTOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/DrEsteban/index.json"
+        dotnet nuget push --api-key ${{ secrets.GITHUBTOKEN }} ./**/Release/*.nupkg --source github
+    - name: Publish NuGet
       run: dotnet nuget push --api-key ${{ secrets.NUGETTOKEN }} ./**/Release/*.nupkg --source https://api.nuget.org/v3/index.json

@@ -1,6 +1,6 @@
 <Project>
     <PropertyGroup>
-        <Version>1.0.5</Version>
+        <Version>1.0.1</Version>
         <Authors>DrEsteban</Authors>
         <Description>Defer execution of code until the end of the current method.</Description>
         <PackageProjectUrl>https://github.com/DrEsteban/DotNetDefer</PackageProjectUrl>

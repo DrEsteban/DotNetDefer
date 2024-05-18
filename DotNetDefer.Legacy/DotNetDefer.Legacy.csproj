@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard1.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>DotNetDefer</RootNamespace>
@@ -11,6 +11,7 @@
 
   <PropertyGroup>
     <PackageId>DrEsteban.DotNetDefer.Legacy</PackageId>
+    <Description>A simple library to bring GoLang's `defer` functionality to .NET! (Legacy app version: only implements for `IDisposable`)</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 

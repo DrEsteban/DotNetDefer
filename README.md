@@ -30,7 +30,7 @@ dotnet add package DrEsteban.DotNetDefer
 Install-Package DrEsteban.DotNetDefer
 ```
 
-There's also a version of the package that targets `netstandard2.0` for compatibility with older projects. (E.g. projects that don't support `IAsyncDisposable`)
+There's also a version of the package that targets `netstandard1.0` for compatibility with older projects. (E.g. projects that don't support `IAsyncDisposable`)
 ```bash
 Install-Package DrEsteban.DotNetDefer.Legacy
 ```

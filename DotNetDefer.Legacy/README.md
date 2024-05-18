@@ -1,7 +1,7 @@
 ﻿# DotNetDefer
 A simple library to bring GoLang's `defer` functionality to .NET!
 
-This version of DotNetDefer targets `netstandard2.0` and only implements `IDisposable` - for use with older projects.
+This version of DotNetDefer targets `netstandard1.0` and only implements `IDisposable` - for use with older projects.
 
 ## Usage
 

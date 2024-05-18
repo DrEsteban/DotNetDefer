@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DeferDotNet.Async\DeferDotNet.Async.csproj" />
+    <ProjectReference Include="..\DotNetDefer.Async\DotNetDefer.Async.csproj" />
   </ItemGroup>
 
   <ItemGroup>

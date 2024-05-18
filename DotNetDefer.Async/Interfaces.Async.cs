@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DeferDotNet;
+namespace DotNetDefer;
 
 public interface IDeferAsync : IAsyncDisposable
 {

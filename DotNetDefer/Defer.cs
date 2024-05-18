@@ -1,7 +1,7 @@
 ﻿using System;
-using DeferDotNet.Internal;
+using DotNetDefer.Internal;
 
-namespace DeferDotNet;
+namespace DotNetDefer;
 
 /// <summary>
 /// Defers the execution of an action until the object is disposed.

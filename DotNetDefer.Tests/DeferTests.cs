@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace DeferDotNet.Tests;
+namespace DotNetDefer.Tests;
 
 public class DeferTests
 {

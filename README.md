@@ -1,14 +1,14 @@
-# DeferDotNet
+# DotNetDefer
 A simple library that attempts to bring GoLang's `defer` functionality to .NET
 
-* `DeferDotNet`
+* `DotNetDefer`
   * Implements `IDisposable` and can be used with `Action`s and `Func`s
-* `DeferDotNet.Async`
+* `DotNetDefer.Async`
   * Implements `IAsyncDisposable` and can be used with `Func<Task>` and `Func<Task<T>>`
 
 ## Usage
 ```csharp
-using DeferDotNet;
+using DotNetDefer;
 
 class Program
 {

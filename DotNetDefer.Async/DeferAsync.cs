@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using DeferDotNet.Internal;
+using DotNetDefer.Internal;
 
-namespace DeferDotNet;
+namespace DotNetDefer;
 
 /// <summary>
 /// Defers the execution of an asynchronous action until the object is disposed.

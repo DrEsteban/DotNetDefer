@@ -1,20 +1,22 @@
 ﻿using System;
-using System.Threading.Tasks;
 
-namespace DeferDotNet.Internal;
+namespace DotNetDefer.Internal;
 
-public abstract class DeferAsyncBase(bool forceThread) : IDeferAsync
+/// <summary>
+/// Base class containing main logic. Not intended to be used directly.
+/// </summary>
+public abstract class DeferBase : IDefer
 {
-    ~DeferAsyncBase() => this.DisposeAsync(false).ConfigureAwait(false).GetAwaiter().GetResult();
+    ~DeferBase() => this.Dispose(false);
 
     public bool IsDisposed { get; protected set; }
     public Exception Error { get; protected set; }
 
-    public ValueTask DisposeAsync() => this.DisposeAsync(true);
+    public void Dispose() => this.Dispose(true);
 
-    protected abstract Task ExecuteAsync();
+    protected abstract void Execute();
 
-    protected async ValueTask DisposeAsync(bool disposing)
+    protected void Dispose(bool disposing)
     {
         if (disposing && this.Error is not null)
         {
@@ -25,7 +27,7 @@ public abstract class DeferAsyncBase(bool forceThread) : IDeferAsync
         {
             try
             {
-                await (forceThread ? Task.Run(this.ExecuteAsync).ConfigureAwait(false) : this.ExecuteAsync().ConfigureAwait(false));
+                this.Execute();
             }
             catch (Exception e)
             {

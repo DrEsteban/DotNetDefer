@@ -12,11 +12,6 @@
   <PropertyGroup>
     <PackageId>DrEsteban.DotNetDefer.Legacy</PackageId>
     <Description>A simple library to bring GoLang's `defer` functionality to .NET! (Legacy app version: only implements for `IDisposable`)</Description>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Include="README.md" Pack="true" PackagePath="." />
-  </ItemGroup>
 
 </Project>

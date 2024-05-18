@@ -1,15 +1,21 @@
 <Project>
-    <PropertyGroup>
-        <Version>1.0.6</Version>
-        <Authors>DrEsteban</Authors>
-        <PackageProjectUrl>https://github.com/DrEsteban/DotNetDefer</PackageProjectUrl>
-        <RepositoryUrl>https://github.com/DrEsteban/DotNetDefer</RepositoryUrl>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <PackageTags>defer;go;golang;dispose;autodispose;idisposable;iasyncdisposable</PackageTags>
-        <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    </PropertyGroup>
+  <PropertyGroup>
+    <Version>1.0.7</Version>
+    <Authors>DrEsteban</Authors>
+    <PackageProjectUrl>https://github.com/DrEsteban/DotNetDefer</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/DrEsteban/DotNetDefer</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>defer;go;golang;dispose;autodispose;idisposable;iasyncdisposable</PackageTags>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
 
-    <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
-        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
-    </PropertyGroup>
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="." />
+    <None Include="../LICENSE.txt" Pack="true" PackagePath="." />
+  </ItemGroup>
 </Project>

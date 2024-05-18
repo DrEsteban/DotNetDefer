@@ -1,20 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.1;net6.0;net7.0;net8.0</TargetFrameworks>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>DotNetDefer</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Compile Include="..\DotNetDefer.Legacy\Defer.cs" Link="Defer.cs" />
-    <Compile Include="..\DotNetDefer.Legacy\DeferBase.cs" Link="DeferBase.cs" />
-    <Compile Include="..\DotNetDefer.Legacy\Interfaces.cs" Link="Interfaces.cs" />
-  </ItemGroup>  
-
   <PropertyGroup>
-    <PackageId>DrEsteban.DotNetDefer</PackageId>
+    <PackageId>DrEsteban.DotNetDefer.Legacy</PackageId>
     <Version>1.0.0</Version>
     <Authors>DrEsteban</Authors>
     <Description>Defer execution of code until the end of the current method.</Description>

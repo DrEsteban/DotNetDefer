@@ -73,4 +73,58 @@ public class DeferAsyncTests
         Assert.Null(defer.Error);
         Assert.True(defer.IsDisposed);
     }
+
+    [Fact]
+    public async Task ActionOnlyCalledOnce()
+    {
+        int x = 0;
+        var defer = new DeferAsync(() =>
+        {
+            x++;
+            return Task.CompletedTask;
+        });
+        await defer.DisposeAsync();
+        await defer.DisposeAsync();
+        Assert.Equal(1, x);
+    }
+
+    [Fact]
+    public async Task SimpleDeferFuncWithException()
+    {
+        DeferAsync<string> defer = null;
+        try
+        {
+            await using (defer = new DeferAsync<string>(() => throw new IndexOutOfRangeException("exception")))
+            {
+                Assert.False(defer.IsDisposed);
+                Assert.Null(defer.Error);
+                Assert.Null(defer.Result);
+            }
+            Assert.Fail("Expected exception");
+        }
+        catch (IndexOutOfRangeException e)
+        {
+            Assert.Equal("exception", e.Message);
+        }
+
+        Assert.NotNull(defer);
+        Assert.Null(defer.Result);
+        Assert.True(defer.IsDisposed);
+
+        Assert.NotNull(defer.Error);
+        Assert.IsType<IndexOutOfRangeException>(defer.Error);
+        Assert.Equal("exception", defer.Error.Message);
+
+        var error = defer.Error;
+        try
+        {
+            await defer.DisposeAsync();
+            Assert.Fail("Expected exception");
+        }
+        catch (IndexOutOfRangeException e)
+        {
+            Assert.Equal("exception", e.Message);
+            Assert.Equal(error, e);
+        }
+    }
 }

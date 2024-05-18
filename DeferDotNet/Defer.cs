@@ -1,17 +1,7 @@
 ﻿using System;
+using DeferDotNet.Internal;
 
 namespace DeferDotNet;
-
-public interface IDefer : IDisposable
-{
-    public bool IsDisposed { get; }
-    public Exception Error { get; }
-}
-
-public interface IDefer<out T> : IDefer
-{
-    public T Result { get; }
-}
 
 /// <summary>
 /// Defers the execution of an action until the object is disposed.
@@ -24,45 +14,12 @@ public interface IDefer<out T> : IDefer
 /// The deferral will only be executed once if Dispose is called multiple times, but the exception will be thrown each time.
 /// </remarks>
 /// <param name="action">The action to defer.</param>
-public sealed class Defer(Action action) : IDefer
+public sealed class Defer(Action action) : DeferBase
 {
-    ~Defer() => this.Dispose(false);
-
-    public bool IsDisposed { get; private set; }
-    public Exception Error { get; private set; }
-
-    public void Dispose() => this.Dispose(true);
-
-    private void Dispose(bool disposing)
+    protected override void Execute()
     {
-        if (!disposing)
-        {
-            return;
-        }
-
-        if (this.Error is not null)
-        {
-            throw this.Error;
-        }
-
-        if (!this.IsDisposed)
-        {
-            try
-            {
-                action();
-            }
-            catch (Exception e)
-            {
-                this.Error = e;
-                throw;
-            }
-            finally
-            {
-                action = null;
-                this.IsDisposed = true;
-                GC.SuppressFinalize(this);
-            }
-        }
+        action();
+        action = null; // Allow the action to be garbage collected
     }
 }
 
@@ -87,45 +44,13 @@ public sealed class Defer(Action action) : IDefer
 /// </remarks>
 /// <typeparam name="T">The type returned by the funciton.</typeparam>
 /// <param name="func">The function to defer.</param>
-public sealed class Defer<T>(Func<T> func) : IDefer<T>
+public sealed class Defer<T>(Func<T> func) : DeferBase, IDefer<T>
 {
-    ~Defer() => this.Dispose(false);
-
     public T Result { get; private set; }
-    public bool IsDisposed { get; private set; }
-    public Exception Error { get; private set; }
 
-    public void Dispose() => this.Dispose(true);
-
-    private void Dispose(bool disposing)
+    protected override void Execute()
     {
-        if (!disposing)
-        {
-            return;
-        }
-
-        if (this.Error is not null)
-        {
-            throw this.Error;
-        }
-
-        if (!this.IsDisposed)
-        {
-            try
-            {
-                this.Result = func();
-            }
-            catch (Exception e)
-            {
-                this.Error = e;
-                throw;
-            }
-            finally
-            {
-                func = null;
-                this.IsDisposed = true;
-                GC.SuppressFinalize(this);
-            }
-        }
+        this.Result = func();
+        func = null; // Allow the function to be garbage collected
     }
 }

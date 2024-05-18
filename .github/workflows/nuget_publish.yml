@@ -1,6 +1,7 @@
 name: NuGet Publish
 
-on: { }
+on:
+  workflow_dispatch:
 
 jobs:
   publish:

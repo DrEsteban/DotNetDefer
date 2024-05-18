@@ -19,4 +19,4 @@ jobs:
     - name: Build release
       run: dotnet build -c Release
     - name: Publish
-      run: dotnet nuget push --api-key ${{ secrets.NUGETTOKEN }} ./**/*.nupkg dotnet nuget push .\**\*.nupkg --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push --api-key ${{ secrets.NUGETTOKEN }} ./**/Release/*.nupkg --source https://api.nuget.org/v3/index.json

@@ -1,6 +1,8 @@
 name: NuGet Publish
 
 on:
+  push:
+    branches: [ "master" ]
   workflow_dispatch:
 
 jobs:
@@ -21,6 +23,6 @@ jobs:
     - name: Publish GitHub
       run: |
         dotnet nuget add source --username USERNAME --password ${{ secrets.GITHUBTOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/DrEsteban/index.json"
-        dotnet nuget push --api-key ${{ secrets.GITHUBTOKEN }} ./**/Release/*.nupkg --source github
+        dotnet nuget push --skip-duplicate --api-key ${{ secrets.GITHUBTOKEN }} ./**/Release/*.nupkg --source github
     - name: Publish NuGet
-      run: dotnet nuget push --api-key ${{ secrets.NUGETTOKEN }} ./**/Release/*.nupkg --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push --skip-duplicate --api-key ${{ secrets.NUGETTOKEN }} ./**/Release/*.nupkg --source https://api.nuget.org/v3/index.json

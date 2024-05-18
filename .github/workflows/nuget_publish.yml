@@ -18,7 +18,5 @@ jobs:
       run: dotnet test --verbosity normal
     - name: Build release
       run: dotnet build -c Release
-    - name: Pack
-      run: dotnet pack
     - name: Publish
-      run: dotnet nuget push --api-key ${{ secrets.NUGETTOKEN }}
+      run: dotnet nuget push --api-key ${{ secrets.NUGETTOKEN }} ./**/*.nupkg dotnet nuget push .\**\*.nupkg --source https://api.nuget.org/v3/index.json

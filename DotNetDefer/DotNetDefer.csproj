@@ -5,6 +5,8 @@
     <LangVersion>latest</LangVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <RootNamespace>DotNetDefer</RootNamespace>
+    <DebugType>embedded</DebugType>
+    <EmbedAllSources>true</EmbedAllSources>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,13 +17,6 @@
 
   <PropertyGroup>
     <PackageId>DrEsteban.DotNetDefer</PackageId>
-    <Version>1.0.0</Version>
-    <Authors>DrEsteban</Authors>
-    <Description>Defer execution of code until the end of the current method.</Description>
-    <PackageProjectUrl>https://github.com/DrEsteban/DotNetDefer</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/DrEsteban/DotNetDefer</RepositoryUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>defer;go;golang;dispose;autodispose;idisposable;iasyncdisposable</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 

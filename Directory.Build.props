@@ -1,8 +1,8 @@
 <Project>
     <PropertyGroup>
-        <Version>1.0.3</Version>
+        <Version>1.0.4</Version>
         <Authors>DrEsteban</Authors>
-        <Description>Defer execution of code until the end of the current method.</Description>
+        <Description>A simple library to bring GoLang's `defer` functionality to .NET!</Description>
         <PackageProjectUrl>https://github.com/DrEsteban/DotNetDefer</PackageProjectUrl>
         <RepositoryUrl>https://github.com/DrEsteban/DotNetDefer</RepositoryUrl>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>

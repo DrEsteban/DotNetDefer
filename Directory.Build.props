@@ -5,7 +5,7 @@
     <PackageProjectUrl>https://github.com/DrEsteban/DotNetDefer</PackageProjectUrl>
     <RepositoryUrl>https://github.com/DrEsteban/DotNetDefer</RepositoryUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageTags>defer;go;golang;dispose;autodispose;idisposable;iasyncdisposable</PackageTags>
+    <PackageTags>defer;deferral;deferred;cleanup;go;golang;dispose;autodispose;idisposable;iasyncdisposable</PackageTags>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>

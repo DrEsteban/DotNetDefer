@@ -16,7 +16,7 @@
   </ItemGroup>  
 
   <PropertyGroup>
-    <PackageId>DrEsteban.DotNetDefer</PackageId>
+    <PackageId>DotNetDefer</PackageId>
     <Description>A simple library to bring GoLang's `defer` functionality to .NET!</Description>
   </PropertyGroup>
 

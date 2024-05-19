@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>DrEsteban.DotNetDefer.Legacy</PackageId>
+    <PackageId>DotNetDefer.Legacy</PackageId>
     <Description>A simple library to bring GoLang's `defer` functionality to .NET! (Legacy app version: only implements for `IDisposable`)</Description>
   </PropertyGroup>
 

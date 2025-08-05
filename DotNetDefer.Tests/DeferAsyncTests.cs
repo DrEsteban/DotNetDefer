@@ -85,6 +85,8 @@ public class DeferAsyncTests
         });
         await defer.DisposeAsync();
         await defer.DisposeAsync();
+        Assert.True(defer.IsDisposed);
+        Assert.Null(defer.Error);
         Assert.Equal(1, x);
     }
 
